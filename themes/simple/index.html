@@ -23,7 +23,7 @@
 			border:solid 1px brown;
 			padding:5px;
 			line-height:150%;
-			z-index:0;'>
+			z-index:9999;'>
 	</div>
 	<?php
 	if(strpos($_GET[mod],'quran.murotal')>-1||strpos($_GET[mod],'quran.hafalan')>-1)
@@ -67,7 +67,7 @@
 				<li <?php if($_REQUEST['mod'] == 'quran.murotal.show'){echo "class='active'";} ?>><a class="nav-link" href="?mod=quran.murotal.show"><i class="fa fa-music"></i> <span>Murotal</span></a></li>
 				<li <?php if($_REQUEST['mod'] == 'hadits.pencarian.show'){echo "class='active'";} ?>><a class="nav-link" href="?mod=hadits.pencarian.show"><i class="fa fa-book"></i> <span>Hadist</span></a></li>
 				<li <?php if($_REQUEST['mod'] == 'quran.hafalan.show'){echo "class='active'";} ?>><a class="nav-link" href="?mod=quran.hafalan.show"><i class="fa fa-brain"></i> <span>Hafalan</span></a></li>
-				<li><a class="nav-link" href="?mod=hadits.pencarian.show"><i class="fa fa-cog"></i> <span>Pengaturan</span></a></li>
+				<li><a class="nav-link" href="javascript:show_pengaturan()"><i class="fa fa-cog"></i> <span>Pengaturan</span></a></li>
 				<?php
 					if($_SESSION[grup]==1){
 						echo '

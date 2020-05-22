@@ -1,0 +1,169 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
+	<title>AL-QURAN Majelis Ta'lim Roudlotul Ulum</title>
+
+	<!-- General CSS Files -->
+	<link rel="stylesheet" href="themes/assets/modules/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="themes/assets/modules/fontawesome/css/all.min.css">
+
+	<!-- Template CSS -->
+	<link rel="stylesheet" href="themes/assets/css/style.css">
+	<link rel="stylesheet" href="themes/assets/css/components.css">
+</head>
+<body>
+	<div id='terjemah_con' 
+			style='background-color:#FFFFFF;
+			visibility:hidden;
+			position:absolute;
+			font-family:verdana;
+			font-size:12px;
+			border:solid 1px brown;
+			padding:5px;
+			line-height:150%;
+			z-index:0;'>
+	</div>
+	<?php
+	if(strpos($_GET[mod],'quran.murotal')>-1||strpos($_GET[mod],'quran.hafalan')>-1)
+		echo "
+		<div style='position:fixed;bottom:0px;width:100%;'>
+			<table align='center' >
+			<tr><td align='center'>
+				<input id='balik_status' type='button' onclick='balik_status()' 
+						style='font-weight:bold;font-family:verdana;color:white;background-color:#222222;padding:5px' 
+						value='Pause Murotal'>
+				<div id='player'></div>
+			
+			</td>
+			</tr>
+			</table>
+		</div>
+		";
+?>
+  <div id="app">
+    <div class="main-wrapper main-wrapper-1">
+	  <div class="navbar-bg"></div>
+	  
+      <nav class="navbar navbar-expand-lg main-navbar">
+		<ul class="navbar-nav mr-3">
+			<li><a href="#" data-toggle="sidebar" class="nav-link nav-link-lg"><i class="fas fa-bars"></i></a></li>
+			<li class="mt-1">
+				<a href="#" class="nav-link nav-link-lg">
+					<h5>Majelis Ta'lim Roudlotul Ulum</h5>
+				</a>
+			</li>
+		</ul>
+	  </nav>
+	  
+      <div class="main-sidebar sidebar-style-2">
+        <aside id="sidebar-wrapper">
+          	<div class="sidebar-brand">
+            	<a href="">AL-QUR'AN</a>
+          	</div>	
+          	<ul class="sidebar-menu">
+				<li <?php if($_REQUEST['mod'] == 'quran.daftar_sura.show' || $_REQUEST['mod'] == ''){echo "class='active'";} ?>><a class="nav-link" href="?mod=quran.daftar_sura.show"><i class="fa fa-home"></i> <span>Daftar Surat</span></a></li>
+				<li <?php if($_REQUEST['mod'] == 'quran.murotal.show'){echo "class='active'";} ?>><a class="nav-link" href="?mod=quran.murotal.show"><i class="fa fa-music"></i> <span>Murotal</span></a></li>
+				<li <?php if($_REQUEST['mod'] == 'hadits.pencarian.show'){echo "class='active'";} ?>><a class="nav-link" href="?mod=hadits.pencarian.show"><i class="fa fa-book"></i> <span>Hadist</span></a></li>
+				<li <?php if($_REQUEST['mod'] == 'quran.hafalan.show'){echo "class='active'";} ?>><a class="nav-link" href="?mod=quran.hafalan.show"><i class="fa fa-brain"></i> <span>Hafalan</span></a></li>
+				<li><a class="nav-link" href="?mod=hadits.pencarian.show"><i class="fa fa-cog"></i> <span>Pengaturan</span></a></li>
+				<?php
+					if($_SESSION[grup]==1){
+						echo '
+							<li><a class="nav-link" href="?mod=utility.login.logout"><i class="fa fa-power-off"></i> <span>Logout</span></a></li>
+						';
+					}
+					else{					
+						echo '
+							<li><a class="nav-link" href="?mod=utility.login.show"><i class="fa fa-user"></i> <span>Login</span></a></li>
+						';
+					}
+					
+				?>
+			</ul>
+    	</aside>
+      </div>
+
+      <!-- Main Content -->
+      <div class="main-content">
+        <section class="section">
+			<div class="row">
+				<div class="col-lg-3 col-md-6 col-sm-6 col-3">
+					<a href="?mod=quran.daftar_sura.show">
+						<div class="card card-icon">
+							<div class="card-body">
+								<i style="color:#4caf50;" class="fa fa-home"></i>
+							</div>
+						</div>
+					</a>
+				</div>
+				<div class="col-lg-3 col-md-6 col-sm-6 col-3">
+					<a href="?mod=quran.daftar_sura.show">
+						<div class="card card-icon">
+							<div class="card-body">
+								<i style="color:#4caf50;" class="fa fa-book"></i>
+							</div>
+						</div>
+					</a>
+				</div>
+				<div class="col-lg-3 col-md-6 col-sm-6 col-3">
+					<a href="?mod=quran.daftar_sura.show">
+						<div class="card card-icon">
+							<div class="card-body">
+								<i style="color:#4caf50;" class="far fa-bookmark"></i>
+							</div>
+						</div>
+					</a>
+				</div>
+				<div class="col-lg-3 col-md-6 col-sm-6 col-3">
+					<?php
+					if($_SESSION[grup]==1){
+						echo '<a href="?mod=utility.login.logout">';
+					}else{
+						echo '<a href="?mod=utility.login.show">';
+					}
+					?>
+						<div class="card card-icon">
+							<div class="card-body">
+								<i style="color:#4caf50;" class="far fa-user"></i>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+			<div class="section-body">
+				<!-- <h2 class="section-title">This is Example Page</h2> -->
+				<!-- <p class="section-lead">This page is just an example for you to create your own page.</p> -->
+				<?php
+					echo $contents;
+				?>
+			</div>
+		</section>
+      </div>
+      <footer class="main-footer">
+        <div class="footer-left">
+          Copyright &copy; <?php echo date('Y');?> <div class="bullet"></div> <span style="color:#4caf50;">Majelis Ta'lim Roudlotul Ulum</span>
+        </div>
+        <div class="footer-right">
+          
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  <!-- General JS Scripts -->
+  <script src='includes/jquery-ui/js/jquery-1.4.4.min.js'></script>
+	<script src='includes/jwplayer/jwplayer.js'></script>
+	<script src='js/terjemah_per_kata.js'></script>
+	
+  <script src="themes/assets/modules/jquery.min.js"></script>
+  <script src="themes/assets/modules/bootstrap/js/bootstrap.min.js"></script>
+  <script src="themes/assets/modules/nicescroll/jquery.nicescroll.min.js"></script>
+  
+  <!-- Template JS File -->
+  <script src="themes/assets/js/scripts.js"></script>
+</body>
+
+<!-- Mirrored from demo.getstisla.com/index-0.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 17 May 2020 05:40:25 GMT -->
+</html>

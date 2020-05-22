@@ -1,0 +1,112 @@
+			<script src='includes/jquery-ui/js/jquery-ui-1.8.10.custom.min.js' >	</script>
+			<link rel='stylesheet' type='text/css' href='includes/jquery-ui/css/jquery-ui-1.8.10.custom.css'>
+
+			<div class="row">
+				<div class="col-md-12 col-12 d-flex justify-content-center">
+					<div class="buttons">
+                      <a onmousemove='move_petunjuk("Ke halaman selanjutnya",event)' 
+						onmouseout='hide_petunjuk()'
+						href='?mod=quran.murotal.show&page=<?php echo $_SESSION[page]+1 ?>' class="btn btn-icon btn-success btn-lg"><i class="fa fa-chevron-left"></i></a>
+                      <a onmousemove='move_petunjuk("Ke halaman sebelumnya",event)' 
+						onmouseout='hide_petunjuk()'
+						href='?mod=quran.murotal.show&page=<?php echo $_SESSION[page]-1 ?>' class="btn btn-icon btn-info btn-lg"><i class="fa fa-chevron-right"></i></a>
+                    </div>
+				</div>
+			</div>
+
+			<div class="row mt-3">
+				<div class="col-md-12 col-12">
+					<div class="card">
+						<div class="card-body">
+							<div class="row">
+								<div class="col-12">
+									<strong>Terjemah : </strong>
+									<?php 
+									$arr_value = array('Indonesia','English','Arab Latin');
+									$arr_title = array('indonesia','english','latin_id');
+									echo combobox($_SESSION[terjemah],' 
+									onchange="ganti_terjemah()"
+									style="font-size:12px;" 
+									','cmb_terjemah',$arr_title,$arr_value ); 
+									?>	
+								</div>	
+							</div>
+							<div class="row mt-3">
+								<div class="col-md-12">
+									<strong>Surat : </strong>
+									<br>
+									<?php 
+										$arr_sura =  get_column("SELECT name_indonesia FROM sura ORDER BY `index` ");
+									?>
+									<div class="row">
+										<div class="col-md-4 col-4">
+											<?php
+												echo autocomplete('',' ','acp_sura',$arr_sura ); 
+											?>
+										</div>
+										<div class="row">
+											<div class="col-1 col-md-1">
+												<strong>:</strong>
+											</div>
+										</div>
+										<div class="col-md-4 col-4">
+											<input id='txt_aya' class="form-control" name='txt_aya' size='3'>
+										</div>
+										<div class="col-md-3 col-3">
+											<input class="btn btn-info btn-block" type='button' value='OK' onclick='ganti_sura()'>
+										</div>
+									</div>
+									
+
+									<?php
+										echo "
+										<script>
+											var arr_sura = Array();
+										";
+										foreach($arr_sura as $i => $sura){
+											echo "
+											arr_sura[".($i+1)."] = \"".trim($sura)."\" ;
+											";
+										}
+										
+										echo "
+										</script>";
+									?>	
+								</div>
+							</div>
+						</div>	
+					</div>
+				</div>
+			</div>
+
+			<div class="card">
+				<div class="card-header">
+					<h4>Murotal Qur'an</h4>
+				</div>
+				<div class="card-body">
+					<?php 
+						echo $content;
+					?>
+				</div>
+			</div>
+			
+			<script>
+			<?php 
+				echo $script;
+			?>
+			</script>
+			<script src='js/murotal.js?dummy=4'></script>
+
+			<div class="row">
+				<div class="col-md-12 col-12 d-flex justify-content-center">
+					<div class="buttons">
+                      <a onmousemove='move_petunjuk("Ke halaman selanjutnya",event)' 
+						onmouseout='hide_petunjuk()'
+						href='?mod=quran.murotal.show&page=<?php echo $_SESSION[page]+1 ?>' class="btn btn-icon btn-success btn-lg"><i class="fa fa-chevron-left"></i></a>
+                      <a onmousemove='move_petunjuk("Ke halaman sebelumnya",event)' 
+						onmouseout='hide_petunjuk()'
+						href='?mod=quran.murotal.show&page=<?php echo $_SESSION[page]-1 ?>' class="btn btn-icon btn-info btn-lg"><i class="fa fa-chevron-right"></i></a>
+                    </div>
+				</div>
+			</div>
+			

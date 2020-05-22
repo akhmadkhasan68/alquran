@@ -1,0 +1,48 @@
+			<script src='includes/jquery-ui/js/jquery-1.4.4.min.js'></script>
+			<script src='includes/jquery-ui/js/jquery-ui-1.8.10.custom.min.js' >	</script>
+			<link rel='stylesheet' type='text/css' href='includes/jquery-ui/css/jquery-ui-1.8.10.custom.css'>
+			
+			<div class="row mb-3">
+				<div class="col-md-12 col-12 d-flex justify-content-center">
+					<div class="buttons">
+                      <a onmousemove='move_petunjuk("Ke halaman sebelumnya",event)' 
+					  onmouseout='hide_petunjuk()'
+					  href='?mod=hadits.pencarian.show&page_cari=<?php echo $_SESSION[page_cari]-1 ?>' class="btn btn-icon btn-success btn-lg"><i class="fa fa-chevron-left"></i></a>
+                      <a onmousemove='move_petunjuk("Ke halaman selanjutnya",event)' 
+					  onmouseout='hide_petunjuk()'
+					  href='?mod=hadits.pencarian.show&page_cari=<?php echo $_SESSION[page_cari]+1 ?>' class="btn btn-icon btn-info btn-lg"><i class="fa fa-chevron-right"></i></a>
+                    </div>
+				</div>
+			</div>
+
+			<div class="card">
+				<div class="card-header">
+					<h4>Hadist</h4>
+				</div>
+				<div class="card-body">
+					<?php 
+						echo $content;
+					?>
+				</div>
+			</div>
+
+			<script>
+			<?php 
+				echo $script;
+			?>
+			</script>
+			<script src='js/murotal.js?dummy=4'></script>
+
+			<div class="row mt-3">
+				<div class="col-md-12 col-12 d-flex justify-content-center">
+					<div class="buttons">
+                      <a onmousemove='move_petunjuk("Ke halaman sebelumnya",event)' 
+					  onmouseout='hide_petunjuk()'
+					  href='?mod=hadits.pencarian.show&page_cari=<?php echo $_SESSION[page_cari]-1 ?>' class="btn btn-icon btn-success btn-lg"><i class="fa fa-chevron-left"></i></a>
+                      <a onmousemove='move_petunjuk("Ke halaman selanjutnya",event)' 
+					  onmouseout='hide_petunjuk()'
+					  href='?mod=hadits.pencarian.show&page_cari=<?php echo $_SESSION[page_cari]+1 ?>' class="btn btn-icon btn-info btn-lg"><i class="fa fa-chevron-right"></i></a>
+                    </div>
+				</div>
+			</div>
+	
